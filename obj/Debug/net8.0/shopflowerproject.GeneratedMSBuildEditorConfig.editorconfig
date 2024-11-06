@@ -58,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcVXNlclxWaWV3c1xfVmlld1N0YXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/maith/Desktop/shopflowerproject/Views/Account/Denied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/maith/Desktop/shopflowerproject/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -72,6 +76,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/maith/Desktop/shopflowerproject/Views/Flowers/Flowers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxvd2Vyc1xGbG93ZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maith/Desktop/shopflowerproject/Views/Flowers/FlowersByCategory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxvd2Vyc1xGbG93ZXJzQnlDYXRlZ29yeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maith/Desktop/shopflowerproject/Views/Flowers/FlowersByOccasion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmxvd2Vyc1xGbG93ZXJzQnlPY2Nhc2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/maith/Desktop/shopflowerproject/Views/Home/AboutUs.cshtml]
@@ -92,6 +104,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/maith/Desktop/shopflowerproject/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maith/Desktop/shopflowerproject/Views/Payment/FillInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxGaWxsSW5mby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maith/Desktop/shopflowerproject/Views/Payment/HandleCartActions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxIYW5kbGVDYXJ0QWN0aW9ucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/maith/Desktop/shopflowerproject/Views/Payment/ShoppingCart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF5bWVudFxTaG9wcGluZ0NhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/maith/Desktop/shopflowerproject/Views/Shared/Error.cshtml]

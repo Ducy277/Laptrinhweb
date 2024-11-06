@@ -3,35 +3,143 @@
 }
 @model List<Flowers>
 <style>
-        .card-img-top {
-            width: 100%;
-            height: 250px;
-            object-fit: cover; 
-        }
-        .product-title {
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
-        .product-description {
-        }
-    </style>
+    .card-img-top {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
 
+    .product-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .btn-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-secondary {
+        color: white;
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 8px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .border1 {
+        border: 2px solid #0d6efd;
+        transition: border-color 0.3s ease;
+    }
+
+    .border1:hover {
+        border-color: #0b5ed7;
+    }
+
+    .alert-dropdown {
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        width: 300px;
+        background-color: #0d6efd;
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 1000;
+        display: none;
+    }
+
+    .alert-dropdown .alert-content {
+        font-size: 16px;
+    }
+
+    .alert-dropdown.success {
+        background-color: #28a745;
+
+    }
+
+    .alert-dropdown.error {
+        background-color: #dc3545;
+    }
+
+    .product-description {}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <div class="container mt-5">
     <h1 class="text-center mb-4">Our Products</h1>
     <div class="row">
 
-        @foreach (var product in Model) {
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        @foreach (var product in Model)
+        {
+            <form asp-controller="Payment" asp-action="HandleCartActions" method="post"
+                class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="card">
                     <img src="@product.HinhAnh" class="card-img-top" alt="@product.TenHoa">
                     <div class="card-body">
                         <h5 class="product-title">@product.TenHoa</h5>
                         <p class="product-description">@product.MoTa</p>
-                        <p class="text-danger">@product.GiaBan.ToString("C")</p> <!-- Hiển thị giá sản phẩm -->
-                        <a asp-controller="Flowers" asp-action="FlowerDetails" asp-route-id="@product.MaHoa" class="btn btn-primary">See Details</a>
+                        <p class="text-danger">@product.GiaBan.ToString("C")</p>
+                        <input type="hidden" name="maHoa" value="@product.MaHoa" />
+                        <input type="hidden" name="soLuong" value="1" />
+                        <div class="btn-group">
+                            <button class="btn btn-primary" type="submit" name="action" value="BuyNow">Buy Now</button>
+                            <button class="btn border1" type="submit" name="action" value="AddToCart">
+                                <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         }
     </div>
 </div>
+<div id="alert-dropdown" class="alert-dropdown" style="display: none;">
+    <div class="alert-content"></div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".btn-group button").click(function (e) {
+            e.preventDefault();
+
+            const action = $(this).val();
+            const maHoa = $(this).closest("form").find("input[name='maHoa']").val();
+            const soLuong = $(this).closest("form").find("input[name='soLuong']").val();
+
+            $.ajax({
+                url: '/Payment/HandleCartActions',
+                type: 'POST',
+                data: {
+                    action: action,
+                    maHoa: maHoa,
+                    soLuong: soLuong
+                },
+                success: function (response) {
+                    if (response.success) {
+                        showAlert(response.message, 'success');
+                    } else {
+                        showAlert(response.message, 'error');
+                    }
+                },
+                error: function () {
+                    showAlert("Đã xảy ra lỗi. Vui lòng thử lại.", 'error');
+                }
+            });
+        });
+
+        function showAlert(message, type) {
+            const alertDropdown = $('#alert-dropdown');
+            alertDropdown.removeClass('success error').addClass(type);
+            alertDropdown.find('.alert-content').text(message);
+            alertDropdown.fadeIn();
+
+            setTimeout(function () {
+                alertDropdown.fadeOut();
+            }, 3000);
+        }
+    });
+</script>
+

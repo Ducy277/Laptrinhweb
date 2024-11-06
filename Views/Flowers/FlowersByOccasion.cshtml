@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "FlowersByOccasion";
+}
+@model List<Flowers>
+<style>
+        .card-img-top {
+            width: 100%;
+            height: 250px;
+            object-fit: cover; 
+        }
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .product-description {
+        }
+    </style>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Our Products</h1>
+    <div class="row">
+
+        @foreach (var product in Model) {
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card">
+                    <img src="@product.HinhAnh" class="card-img-top" alt="@product.TenHoa">
+                    <div class="card-body">
+                        <h5 class="product-title">@product.TenHoa</h5>
+                        <p class="product-description">@product.MoTa</p>
+                        <p class="text-danger">@product.GiaBan.ToString("C")</p> <!-- Hiển thị giá sản phẩm -->
+                        <a asp-controller="Flowers" asp-action="FlowerDetails" asp-route-id="@product.MaHoa" class="btn btn-primary">See Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

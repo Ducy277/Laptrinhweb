@@ -3,16 +3,17 @@
 }
 @model Flowers
 <style>
-    .max-height-flower{
+    .max-height-flower {
         height: 700px;
-        object-fit: cover; 
+        object-fit: cover;
     }
 </style>
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="max-height-flower card-img-top mb-5 mb-md-0"
-                    src="@Model.HinhAnh" alt="Lỗi" /></div>
+            <div class="col-md-6">
+                <img class="max-height-flower card-img-top mb-5 mb-md-0" src="@Model.HinhAnh" alt="Lỗi" />
+            </div>
             <div class="col-md-6">
                 <div class="small mb-1">@Model.MaHoa</div>
                 <h1 class="display-5 fw-bolder">@Model.TenHoa</h1>

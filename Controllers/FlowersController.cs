@@ -1,4 +1,5 @@
 using System.Data.SqlClient;
+using System.Reflection.Metadata;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Elfie.Serialization;
 using shopflowerproject.Models;
@@ -29,9 +30,9 @@ public class FlowersController : Controller
                         {
                             MaHoa = reader.GetString(0),
                             TenHoa = reader.IsDBNull(3) ? null : reader.GetString(3),
-                            MoTa = reader.IsDBNull(7) ? null : reader.GetString(7),
-                            HinhAnh = reader.IsDBNull(8) ? null : reader.GetString(8),
-                            GiaBan = reader.IsDBNull(5) ? 0 : reader.GetDecimal(5)
+                            MoTa = reader.IsDBNull(6) ? null : reader.GetString(6),
+                            HinhAnh = reader.IsDBNull(7) ? null : reader.GetString(7),
+                            GiaBan = reader.IsDBNull(4) ? 0 : reader.GetDecimal(4)
                         };
                     }
                 }
@@ -58,15 +59,85 @@ public class FlowersController : Controller
                         {
                             MaHoa = reader.GetString(0),
                             TenHoa = reader.GetString(3),
-                            MoTa = reader.GetString(7),
-                            HinhAnh = reader.GetString(8),
-                            GiaBan = reader.GetDecimal(5)
+                            MoTa = reader.GetString(6),
+                            HinhAnh = reader.GetString(7),
+                            GiaBan = reader.GetDecimal(4)
                         });
                     }
                 }
             }
         }
         return flowers;
+    }
+    public async Task<List<Flowers>> getAllFlowersByCategory(string Category)
+    {
+        var flowers = new List<Flowers>();
+        var connecString = _configuration.GetConnectionString("Default");
+
+        using (var connec = new SqlConnection(connecString))
+        {
+            await connec.OpenAsync();
+
+            using (SqlCommand cmd = new SqlCommand("SELECT * FROM HienThiToanBoHoa where MaHoaTuoi = @Category", connec))
+            {
+                cmd.Parameters.Add(new SqlParameter("@Category", Category));
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        flowers.Add(new Flowers
+                        {
+                            MaHoa = reader.GetString(0),
+                            TenHoa = reader.GetString(3),
+                            MoTa = reader.GetString(6),
+                            HinhAnh = reader.GetString(7),
+                            GiaBan = reader.GetDecimal(4)
+                        });
+                    }
+                }
+            }
+        }
+        return flowers;
+    }
+    public async Task<List<Flowers>> getAllFlowersByOccasion(string Occasion)
+    {
+        var flowers = new List<Flowers>();
+        var connecString = _configuration.GetConnectionString("Default");
+
+        using (var connec = new SqlConnection(connecString))
+        {
+            await connec.OpenAsync();
+
+            using (SqlCommand cmd = new SqlCommand("SELECT * FROM HienThiToanBoHoa where MaDanhMuc = @Occasion", connec))
+            {
+                cmd.Parameters.Add(new SqlParameter("@Occasion", Occasion));
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        flowers.Add(new Flowers
+                        {
+                            MaHoa = reader.GetString(0),
+                            TenHoa = reader.GetString(3),
+                            MoTa = reader.GetString(6),
+                            HinhAnh = reader.GetString(7),
+                            GiaBan = reader.GetDecimal(4)
+                        });
+                    }
+                }
+            }
+        }
+        return flowers;
+    }
+    public async Task<IActionResult> FlowersByCategory(string Category)
+    {
+        var flowers = await getAllFlowersByCategory(Category);
+        return View(flowers);
+    }
+    public async Task<IActionResult> FlowersByOccasion(string Occasion)
+    {
+        var flowers = await getAllFlowersByOccasion(Occasion);
+        return View(flowers);
     }
 
     public async Task<IActionResult> Flowers()

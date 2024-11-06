@@ -1,10 +1,12 @@
 using System.Data.SqlClient;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using shopflowerproject.Filters;
 using shopflowerproject.Models;
 
 namespace shopflowerproject.Areas.Admin.Controllers
 {
+    [AuthorizeAdmin]
     [Area("Admin")]
     public class HomeAdminController : Controller
     {
@@ -29,26 +31,33 @@ namespace shopflowerproject.Areas.Admin.Controllers
                     Total = result.ToString();
                 }
             }
-
             return Total;
         }
         public async Task<string> TotalEarnInMonth()
         {
-            string? Total = string.Empty;
+            string Total = "0";
             var connecString = _configuration.GetConnectionString("Default");
+
             using (SqlConnection connec = new SqlConnection(connecString))
             {
                 await connec.OpenAsync();
-                SqlCommand cmd = new SqlCommand("Select dbo.TongTienHangThang()", connec);
-                var result = await cmd.ExecuteScalarAsync();
-                if (result != null)
+                SqlCommand cmd = new SqlCommand("SELECT dbo.TongTienHangThang()", connec);
+
+
+                using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                 {
-                    Total = result.ToString();
+                    if (await reader.ReadAsync())
+                    {
+                        if (!reader.IsDBNull(0))
+                        {
+                            Total = reader.GetDouble(0).ToString();
+                        }
+                    }
                 }
             }
-
             return Total;
         }
+
         public async Task<string> TotalCustomer()
         {
             string? Total = string.Empty;
@@ -63,7 +72,6 @@ namespace shopflowerproject.Areas.Admin.Controllers
                     Total = result.ToString();
                 }
             }
-
             return Total;
         }
         public async Task<IActionResult> Index()

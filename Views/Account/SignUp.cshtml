@@ -22,8 +22,8 @@
                 <span asp-validation-for="Username" class="text-danger"></span>
               </div>
               <div data-mdb-input-init class="form-outline mb-4">
-                <input type="Email" id="Email" asp-for="Email" class="form-control form-control-lg"
-                  placeholder="Email" required />
+                <input type="Email" id="Email" asp-for="Email" class="form-control form-control-lg" placeholder="Email"
+                  required />
                 <span asp-validation-for="Email" class="text-danger"></span>
               </div>
 
@@ -48,6 +48,12 @@
                 Have already an account?
                 <a asp-controller="Account" asp-action="Login" class="fw-bold text-body"><u>Login here</u></a>
               </p>
+                @if (!ViewData.ModelState.IsValid)
+                {
+                <div class="alert alert-danger">
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                </div>
+                }
             </form>
 
           </div>

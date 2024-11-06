@@ -35,7 +35,12 @@
                 <p class="text-center text-muted mt-5 mb-0">Don't have account ? <a asp-controller="Account"
                     asp-action="SignUp" class="fw-bold text-body"><u>Register</u></a></p>
               </form>
-
+              <div class="text-center">
+                <a class="p-1" href=""><i class="fa-brands fa-google"></i></a>
+                <a class="p-1" href=""><i class="fa-brands fa-facebook"></i></a>
+                <a class="p-1" href=""><i class="fa-brands fa-twitter"></i></a>
+                <a class="p-1" href=""><i class="fa-brands fa-microsoft"></i></a>
+              </div>
               @if (!ViewData.ModelState.IsValid)
               {
                 <div class="alert alert-danger">
