@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+@model shopflowerproject.Models.Flowers
+
+<form asp-action="Create" method="post">
+    <div class="row container container-fluid justify-content-center">
+        <div class="col-md-6">
+            <label for="TenHoa">Mã hoa</label>
+            <input asp-for="MaHoa" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label for="TenHoa">Tên hoa</label>
+            <input asp-for="TenHoa" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label for="MaDanhMuc">Danh mục</label>
+            <select id="MaDanhMuc" name="MaDanhMuc" class="form-control">
+                <option value="">Chọn danh mục</option>
+                @foreach (var category in ViewBag.FlowerCategory)
+                {
+                    <option value="@category.MaDanhMuc">@category.TenDanhMuc</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="MaHoaTuoi">Loại hoa</label>
+            <select id="MaHoaTuoi" name="MaHoaTuoi" class="form-control">
+                <option value="">Chọn loại hoa</option>
+                @foreach (var category in ViewBag.FlowerType)
+                {
+                    <option value="@category.MaHoaTuoi">@category.TenHoaTuoi</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="Gia">Giá bán</label>
+            <input asp-for="GiaBan" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label for="MoTa">Mô tả</label>
+            <input asp-for="MoTa" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label for="HinhAnh">Hình ảnh</label>
+            <input asp-for="HinhAnh" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success m-3">Thêm</button>
+        <a asp-action="Index" class="btn btn-secondary m-1">Quay lại</a>
+    </div>
+</form>

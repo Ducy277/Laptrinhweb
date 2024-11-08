@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maith\\Desktop\\shopflowerproject\\shopflowerproject.csproj": {}
+    "C:\\Users\\DUC anh\\Source\\Repos\\Laptrinhweb\\shopflowerproject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maith\\Desktop\\shopflowerproject\\shopflowerproject.csproj": {
+    "C:\\Users\\DUC anh\\Source\\Repos\\Laptrinhweb\\shopflowerproject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maith\\Desktop\\shopflowerproject\\shopflowerproject.csproj",
+        "projectUniqueName": "C:\\Users\\DUC anh\\Source\\Repos\\Laptrinhweb\\shopflowerproject.csproj",
         "projectName": "shopflowerproject",
-        "projectPath": "C:\\Users\\maith\\Desktop\\shopflowerproject\\shopflowerproject.csproj",
-        "packagesPath": "C:\\Users\\maith\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maith\\Desktop\\shopflowerproject\\obj\\",
+        "projectPath": "C:\\Users\\DUC anh\\Source\\Repos\\Laptrinhweb\\shopflowerproject.csproj",
+        "packagesPath": "C:\\Users\\DUC anh\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\DUC anh\\Source\\Repos\\Laptrinhweb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\maith\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DUC anh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -46,6 +46,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.Data.SqlClient": {
+              "target": "Package",
+              "version": "[5.2.2, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.6, )"

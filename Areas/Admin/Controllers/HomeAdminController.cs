@@ -21,6 +21,7 @@ namespace shopflowerproject.Areas.Admin.Controllers
         {
             string? Total = string.Empty;
             var connecString = _configuration.GetConnectionString("Default");
+
             using (SqlConnection connec = new SqlConnection(connecString))
             {
                 await connec.OpenAsync();
@@ -42,8 +43,6 @@ namespace shopflowerproject.Areas.Admin.Controllers
             {
                 await connec.OpenAsync();
                 SqlCommand cmd = new SqlCommand("SELECT dbo.TongTienHangThang()", connec);
-
-
                 using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                 {
                     if (await reader.ReadAsync())
@@ -86,5 +85,6 @@ namespace shopflowerproject.Areas.Admin.Controllers
         {
             return View();
         }
+
     }
 }
