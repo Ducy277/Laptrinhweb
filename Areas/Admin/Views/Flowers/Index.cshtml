@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+@model IEnumerable<shopflowerproject.Models.Flowers>
+
+
+<div class="container container-fluid">
+    <a href="/Admin/Flowers/Create">Thêm mới hoa</a>
+    <table class="table table-bordered mt-2">
+        <thead>
+            <tr>
+                <th>Ảnh</th>
+                <th>Mã hoa</th>
+                <th>Tên hoa</th>
+                <th>Danh mục</th>
+                <th>Loại hoa</th>
+                <th>Mô tả</th>
+                <th>Giá bán</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><img src="@item.HinhAnh" class="img-fluid"></td>
+                    <td>@item.MaHoa</td>
+                    <td>@item.TenHoa</td>
+                    <td>@item.TenDanhMuc</td>
+                    <td>@item.LoaiHoa</td>
+                    <td>@item.MoTa</td>
+                    <td>@item.GiaBan</td>
+                    <td>
+                        <a href="/admin/flowers/edit/@item.MaHoa">Sửa</a>
+                        <a href="/admin/flowers/delete/@item.MaHoa">Xoá</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
