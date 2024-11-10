@@ -26,10 +26,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\DUC anh\Source\Repos\Laptrinhweb
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/DUC anh/Source/Repos/Laptrinhweb/Areas/Admin/Views/Flowers/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRmxvd2Vyc1xDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/DUC anh/Source/Repos/Laptrinhweb/Areas/Admin/Views/Flowers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRmxvd2Vyc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

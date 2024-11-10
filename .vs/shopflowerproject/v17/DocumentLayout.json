@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\DUC anh\\source\\repos\\Laptrinhweb\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{45D15FA9-7ABC-4A70-BF52-C6F6C1A995B9}|shopflowerproject.csproj|c:\\users\\duc anh\\source\\repos\\laptrinhweb\\areas\\admin\\views\\flowers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{45D15FA9-7ABC-4A70-BF52-C6F6C1A995B9}|shopflowerproject.csproj|solutionrelative:areas\\admin\\views\\flowers\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{45D15FA9-7ABC-4A70-BF52-C6F6C1A995B9}|shopflowerproject.csproj|c:\\users\\duc anh\\source\\repos\\laptrinhweb\\areas\\admin\\views\\flowers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{45D15FA9-7ABC-4A70-BF52-C6F6C1A995B9}|shopflowerproject.csproj|solutionrelative:areas\\admin\\views\\flowers\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45D15FA9-7ABC-4A70-BF52-C6F6C1A995B9}|shopflowerproject.csproj|c:\\users\\duc anh\\source\\repos\\laptrinhweb\\models\\flowers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45D15FA9-7ABC-4A70-BF52-C6F6C1A995B9}|shopflowerproject.csproj|solutionrelative:models\\flowers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{45D15FA9-7ABC-4A70-BF52-C6F6C1A995B9}|shopflowerproject.csproj|c:\\users\\duc anh\\source\\repos\\laptrinhweb\\areas\\admin\\controllers\\flowerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{45D15FA9-7ABC-4A70-BF52-C6F6C1A995B9}|shopflowerproject.csproj|solutionrelative:areas\\admin\\controllers\\flowerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{45D15FA9-7ABC-4A70-BF52-C6F6C1A995B9}|shopflowerproject.csproj|c:\\users\\duc anh\\source\\repos\\laptrinhweb\\models\\viewmodels\\flowervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{45D15FA9-7ABC-4A70-BF52-C6F6C1A995B9}|shopflowerproject.csproj|solutionrelative:models\\viewmodels\\flowervm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,17 +22,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "FlowersController.cs",
               "DocumentMoniker": "C:\\Users\\DUC anh\\source\\repos\\Laptrinhweb\\Areas\\Admin\\Controllers\\FlowersController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\FlowersController.cs",
               "ToolTip": "C:\\Users\\DUC anh\\source\\repos\\Laptrinhweb\\Areas\\Admin\\Controllers\\FlowersController.cs",
               "RelativeToolTip": "Areas\\Admin\\Controllers\\FlowersController.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAgwIcAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAcwEkAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-08T01:22:26.999Z",
               "IsPinned": true,
@@ -44,42 +40,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\DUC anh\\source\\repos\\Laptrinhweb\\Areas\\Admin\\Views\\Flowers\\Index.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Flowers\\Index.cshtml",
               "ToolTip": "C:\\Users\\DUC anh\\source\\repos\\Laptrinhweb\\Areas\\Admin\\Views\\Flowers\\Index.cshtml",
               "RelativeToolTip": "Areas\\Admin\\Views\\Flowers\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAHABAAAAAAAAAAAYwHEBAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-08T04:07:18.65Z",
+              "WhenOpened": "2024-11-10T01:11:02.511Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Flowers.cs",
-              "DocumentMoniker": "C:\\Users\\DUC anh\\source\\repos\\Laptrinhweb\\Models\\Flowers.cs",
-              "RelativeDocumentMoniker": "Models\\Flowers.cs",
-              "ToolTip": "C:\\Users\\DUC anh\\source\\repos\\Laptrinhweb\\Models\\Flowers.cs",
-              "RelativeToolTip": "Models\\Flowers.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Title": "FlowerVM.cs",
+              "DocumentMoniker": "C:\\Users\\DUC anh\\source\\repos\\Laptrinhweb\\Models\\ViewModels\\FlowerVM.cs",
+              "RelativeDocumentMoniker": "Models\\ViewModels\\FlowerVM.cs",
+              "ToolTip": "C:\\Users\\DUC anh\\source\\repos\\Laptrinhweb\\Models\\ViewModels\\FlowerVM.cs",
+              "RelativeToolTip": "Models\\ViewModels\\FlowerVM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T03:29:07.42Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "C:\\Users\\DUC anh\\source\\repos\\Laptrinhweb\\Areas\\Admin\\Views\\Flowers\\Create.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Flowers\\Create.cshtml",
-              "ToolTip": "C:\\Users\\DUC anh\\source\\repos\\Laptrinhweb\\Areas\\Admin\\Views\\Flowers\\Create.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Flowers\\Create.cshtml",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAwAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-08T02:55:31.646Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-10T01:02:13.153Z"
             }
           ]
         }

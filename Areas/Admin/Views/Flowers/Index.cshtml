@@ -1,41 +1,632 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+	ViewData["Title"] = "Index";
 }
-@model IEnumerable<shopflowerproject.Models.Flowers>
+@model shopflowerproject.Models.ViewModels.FlowerVM
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/fontawesome.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<style>
+		body {
+			color: #566787;
+			background: #f5f5f5;
+			font-family: 'Varela Round', sans-serif;
+			font-size: 13px;
+		}
+		.table-responsive {
+			margin: 30px 0;
+		}
+		.table-wrapper {
+			background: #fff;
+			padding: 20px 25px;
+			border-radius: 3px;
+			min-width: 1000px;
+			box-shadow: 0 1px 1px rgba(0,0,0,.05);
+		}
+		.table-title {
+			padding-bottom: 15px;
+			background: #435d7d;
+			color: #fff;
+			padding: 16px 30px;
+			min-width: 100%;
+			margin: -20px -25px 10px;
+			border-radius: 3px 3px 0 0;
+		}
+		.table-title h2 {
+			margin: 5px 0 0;
+			font-size: 24px;
+		}
+		.table-title .btn-group {
+			float: right;
+		}
+		.table-title .btn {
+			color: #fff;
+			float: right;
+			font-size: 13px;
+			border: none;
+			min-width: 50px;
+			border-radius: 2px;
+			border: none;
+			outline: none !important;
+			margin-left: 10px;
+		}
+		.table-title .btn i {
+			float: left;
+			font-size: 21px;
+			margin-right: 5px;
+		}
+		.table-title .btn span {
+			float: left;
+			margin-top: 2px;
+		}
+		table.table tr th, table.table tr td {
+			border-color: #e9e9e9;
+			padding: 12px 15px;
+			vertical-align: middle;
+		}
+		table.table tr th:first-child {
+			width: 60px;
+		}
+		table.table tr th:last-child {
+			width: 100px;
+		}
+		table.table-striped tbody tr:nth-of-type(odd) {
+			background-color: #fcfcfc;
+		}
+		table.table-striped.table-hover tbody tr:hover {
+			background: #f5f5f5;
+		}
+		table.table th i {
+			font-size: 13px;
+			margin: 0 5px;
+			cursor: pointer;
+		}
+		table.table td:last-child i {
+			opacity: 0.9;
+			font-size: 22px;
+			margin: 0 5px;
+		}
+		table.table td a {
+			font-weight: bold;
+			color: #566787;
+			display: inline-block;
+			text-decoration: none;
+			outline: none !important;
+		}
+		table.table td a:hover {
+			color: #2196F3;
+		}
+		table.table td a.edit {
+			color: #FFC107;
+		}
+		table.table td a.delete {
+			color: #F44336;
+		}
+		table.table td i {
+			font-size: 19px;
+		}
+		table.table .avatar {
+			border-radius: 50%;
+			vertical-align: middle;
+			margin-right: 10px;
+		}
 
-<div class="container container-fluid">
-    <a href="/Admin/Flowers/Create">Thêm mới hoa</a>
-    <table class="table table-bordered mt-2">
-        <thead>
-            <tr>
-                <th>Ảnh</th>
-                <th>Mã hoa</th>
-                <th>Tên hoa</th>
-                <th>Danh mục</th>
-                <th>Loại hoa</th>
-                <th>Mô tả</th>
-                <th>Giá bán</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td><img src="@item.HinhAnh" class="img-fluid"></td>
-                    <td>@item.MaHoa</td>
-                    <td>@item.TenHoa</td>
-                    <td>@item.TenDanhMuc</td>
-                    <td>@item.LoaiHoa</td>
-                    <td>@item.MoTa</td>
-                    <td>@item.GiaBan</td>
-                    <td>
-                        <a href="/admin/flowers/edit/@item.MaHoa">Sửa</a>
-                        <a href="/admin/flowers/delete/@item.MaHoa">Xoá</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+		.pagination {
+			display: flex;
+			justify-content: center;
+			padding-left: 0;
+			list-style: none;
+		}
+
+		.page-link {
+			padding: 10px 15px;
+			margin: 0 5px;
+			border: 1px solid #ddd;
+			color: #007bff;
+			text-decoration: none;
+			border-radius: 5px;
+			font-size: 14px;
+		}
+
+		.page-link:hover {
+			background-color: #f8f9fa;
+			border-color: #007bff;
+			color: #0056b3;
+		}
+
+		/* Active page */
+		.page-link.active {
+			background-color: #007bff;
+			color: white;
+			border-color: #007bff;
+		}
+
+		.page-link.active:hover {
+			background-color: #0056b3;
+			border-color: #0056b3;
+		}
+		.hint-text {
+			float: left;
+			margin-top: 10px;
+			font-size: 13px;
+		}
+		/* Custom checkbox */
+		.custom-checkbox {
+			position: relative;
+		}
+		.custom-checkbox input[type="checkbox"] {
+			opacity: 0;
+			position: absolute;
+			margin: 5px 0 0 3px;
+			z-index: 9;
+		}
+		.custom-checkbox label:before{
+			width: 18px;
+			height: 18px;
+		}
+		.custom-checkbox label:before {
+			content: '';
+			margin-right: 10px;
+			display: inline-block;
+			vertical-align: text-top;
+			background: white;
+			border: 1px solid #bbb;
+			border-radius: 2px;
+			box-sizing: border-box;
+			z-index: 2;
+		}
+		.custom-checkbox input[type="checkbox"]:checked + label:after {
+			content: '';
+			position: absolute;
+			left: 6px;
+			top: 3px;
+			width: 6px;
+			height: 11px;
+			border: solid #000;
+			border-width: 0 3px 3px 0;
+			transform: inherit;
+			z-index: 3;
+			transform: rotateZ(45deg);
+		}
+		.custom-checkbox input[type="checkbox"]:checked + label:before {
+			border-color: #03A9F4;
+			background: #03A9F4;
+		}
+		.custom-checkbox input[type="checkbox"]:checked + label:after {
+			border-color: #fff;
+		}
+		.custom-checkbox input[type="checkbox"]:disabled + label:before {
+			color: #b8b8b8;
+			cursor: auto;
+			box-shadow: none;
+			background: #ddd;
+		}
+		/* Modal styles */
+		.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+			padding: 20px 30px;
+		}
+		.modal .modal-content {
+			border-radius: 3px;
+			font-size: 14px;
+		}
+		.modal .modal-footer {
+			background: #ecf0f1;
+			border-radius: 0 0 3px 3px;
+		}
+		.modal .modal-title {
+			display: inline-block;
+		}
+		.modal .form-control {
+			border-radius: 2px;
+			box-shadow: none;
+			border-color: #dddddd;
+		}
+		.modal textarea.form-control {
+			resize: vertical;
+		}
+		.modal .btn {
+			border-radius: 2px;
+			min-width: 100px;
+		}
+		.modal form label {
+			font-weight: normal;
+		}
+		.modal-content {
+			border-radius: 35px;
+		}
+		/*Validation*/
+		.field-validation-error{
+			color: red;
+		}
+	</style>
+	<script>
+		$(document).ready(function(){
+			// Activate tooltip
+			$('[data-bs-toggle="tooltip"]').tooltip();
+
+			// Select/Deselect checkboxes
+			// var checkbox = $('table tbody input[type="checkbox"]');
+			// $("#selectAll").click(function(){
+			// 	if(this.checked){
+			// 		checkbox.each(function(){
+			// 			this.checked = true;
+			// 		});
+			// 	} else{
+			// 		checkbox.each(function(){
+			// 			this.checked = false;
+			// 		});
+			// 	}
+			// });
+			// checkbox.click(function(){
+			// 	if(!this.checked){
+			// 		$("#selectAll").prop("checked", false);
+			// 	}
+			// });
+
+			$('#selectAll').click(function(){
+				if($(this).prop('checked')){
+					$('input[name="selectedItems"]').prop('checked', true);
+				}
+				else {
+					$('input[name="selectedItems"]').prop('checked', false);
+				}
+			});
+
+			$('input[name="selectedItems"]').click(function(){
+				if(!$(this).prop('checked')){
+					$('#selectAll').prop('checked', false);
+				}
+			});
+
+			$('#deleteSelectedBtn').click(function(){
+				var selected = [];
+					$('input[name="selectedItems"]:checked').each(function(){
+						selected.push($(this).val());
+				});
+
+				if(selected.length > 0){
+					$('#deleteSelectedIds').val(JSON.stringify(selected));
+					$('#deleteSelectedModal').modal('show');
+				} 
+				else {
+					alert('Vui lòng chọn ít nhất một sản phẩm để xóa.');
+				}
+			});
+
+			$('#editFlowerModal').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget); // Lấy đối tượng đã click (icon Edit)
+				var flowerId = button.data('id'); // Lấy ID của hoa từ data-id
+
+				// Tiến hành gọi API hoặc lấy dữ liệu cho flowerId và điền vào form
+				// Ví dụ, bạn có thể sử dụng AJAX để lấy dữ liệu từ server và cập nhật form
+				$.ajax({
+					url: '/Admin/Flowers/Edit/' + flowerId, // URL của action Edit
+					type: 'GET',
+					success: function(data) {
+						console.log(data);
+						// Gán dữ liệu vào form
+						$('#MaHoa').val(data.maHoa);
+						$('#TenHoa').val(data.tenHoa);
+						$('#MaDanhMuc').val(data.maDanhMuc);
+						$('#MaHoaTuoi').val(data.maHoaTuoi);
+						$('#GiaBan').val(data.giaBan);
+						$('#MoTa').val(data.moTa);
+						$('#HinhAnh').val(data.hinhAnh);
+
+						$('#editFlowerModal').modal('show');
+					},
+					error: function() {
+						alert('Không thể tải dữ liệu cho hoa.');
+					}
+				});
+			});
+
+			$('#deleteFlowerModal').on('show.bs.modal', function (event) {
+				var button = $(event.relatedTarget); // Lấy đối tượng đã click (icon Delete)
+				var flowerId = button.data('id'); // Lấy ID của hoa từ data-id
+				$('#deleteFlowerId').val(flowerId); // Gán ID vào input hidden trong form
+			});
+		});
+	</script>
+</head>
+<body>
+	<div class="container-xl">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="row mb-3">
+							<div class="col-sm-6">
+								<h2>Quản lý <b>Hoa</b></h2>
+							</div>
+							<div class="col-sm-6 d-flex flex-column align-items-end">
+								<a href="#addFlowerModal" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#addFlowerModal">
+									<i class="material-icons">&#xE147;</i>
+									<span>Thêm mới hoa</span>
+								</a>
+								<a href="javascript:void(0);" id="deleteSelectedBtn" class="btn btn-danger">
+									<i class="material-icons">&#xE15C;</i>
+									<span>Xoá đã chọn</span>
+								</a>
+							</div>
+						</div>
+@* 						<div class="row mb-1">
+							<form method="get" class="form-inline d-flex flex-wrap">
+								<div class="form-group me-3 mb-2">
+									<label for="searchMaHoa" class="me-2">Mã hoa:</label>
+									<input type="text" class="form-control" id="searchMaHoa" name="searchMaHoa" value="@Context.Request.Query["searchMaHoa"]" />
+								</div>
+								<div class="form-group me-3 mb-2">
+									<label for="searchTenHoa" class="me-2">Tên hoa:</label>
+									<input type="text" class="form-control" id="searchTenHoa" name="searchTenHoa" value="@Context.Request.Query["searchTenHoa"]" />
+								</div>
+								<button type="submit" class="btn btn-primary mb-2">Tìm kiếm</button>
+							</form>
+						</div> *@
+					</div>
+				</div>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="selectAll">
+									<label for="selectAll"></label>
+								</span>
+							</th>
+							<th>Ảnh</th>
+							<th>
+								<a href="@Url.Action("Index", new { page = ViewBag.CurrentPage, sortOrder = ViewBag.SortOrder == "mahoa_asc" ? "mahoa_desc" : "mahoa_asc" })">Mã hoa</a>
+								@if (ViewBag.SortOrder == "mahoa_asc")
+								{
+									<span>&#9650;</span>
+								}
+								else if (ViewBag.SortOrder == "mahoa_desc")
+								{
+									<span>&#9660;</span>
+								}
+							</th>
+							<th>
+								<a href="@Url.Action("Index", new { page = ViewBag.CurrentPage, sortOrder = ViewBag.SortOrder == "tenhoa_asc" ? "tenhoa_desc" : "tenhoa_asc" })">Tên hoa</a>
+								@if (ViewBag.SortOrder == "tenhoa_asc")
+								{
+									<span>&#9650;</span>
+								}
+								else if (ViewBag.SortOrder == "tenhoa_desc")
+								{
+									<span>&#9660;</span>
+								}
+							</th>
+							<th>Danh mục</th>
+							<th>Loại hoa</th>
+							<th>Mô tả</th>
+							<th>Giá bán</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model.FlowerList)
+						{
+							<tr>
+								<td>
+									<span class="custom-checkbox">
+										<input type="checkbox" id="checkbox@item.MaHoa" name="selectedItems" value="@item.MaHoa">
+										<label for="checkbox@item.MaHoa"></label>
+									</span>
+								</td>
+								<td><img src="@item.HinhAnh" class="img-fluid"></td>
+								<td>@item.MaHoa</td>
+								<td>@item.TenHoa</td>
+								<td>@item.TenDanhMuc</td>
+								<td>@item.LoaiHoa</td>
+								<td>@item.MoTa</td>
+								<td>@item.GiaBan</td>
+								<td>
+									<a href="#editFlowerModal" class="edit" data-bs-toggle="modal" data-bs-target="#editFlowerModal" data-id="@item.MaHoa">
+										<i class="material-icons" data-bs-toggle="tooltip" title="Sửa">&#xE254;</i>
+									</a>
+									<a href="#deleteFlowerModal" class="delete" data-bs-toggle="modal" data-id="@item.MaHoa">
+										<i class="material-icons" data-bs-toggle="tooltip" title="Xoá">&#xE872;</i>
+									</a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>	
+		<!-- Pagination -->
+		<div class="pagination justify-content-center mt-3 mb-3">
+			@for (int i = 1; i <= ViewBag.TotalPages; i++)
+			{
+				<a href="@Url.Action("Index", new { page = i, sortOrder = ViewBag.SortOrder })" class="page-link @(i == ViewBag.CurrentPage ? "active" : "")">@i</a>
+			}
+		</div>
+	</div>
+	<!-- Create Modal HTML -->
+	<div id="addFlowerModal" class="modal fade">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<form asp-action="Create" asp-controller="Flowers" method="post">
+					@Html.AntiForgeryToken()
+					<div class="modal-header">
+						<h4 class="modal-title">Add Flower</h4>
+						<button type="button" class="close" data-bs-dismiss="modal">×</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="MaHoa">Mã hoa</label>
+							<input asp-for="flw.MaHoa" class="form-control" />
+							@Html.ValidationMessageFor(row => row.flw.MaHoa)
+						</div>
+						<div class="form-group">
+							<label for="TenHoa">Tên hoa</label>
+							<input asp-for="flw.TenHoa" class="form-control" />
+							@Html.ValidationMessageFor(row => row.flw.TenHoa)
+						</div>
+						<div class="form-group">
+							<label for="MaDanhMuc">Danh mục</label>
+							<select asp-for="flw.MaDanhMuc" class="form-control">
+								<option value="">Chọn danh mục</option>
+								@foreach (var category in ViewBag.FlowerCategory)
+								{
+									<option value="@category.MaDanhMuc">@category.TenDanhMuc</option>
+								}
+							</select>
+							@Html.ValidationMessageFor(row => row.flw.MaDanhMuc)
+						</div>
+						<div class="form-group">
+							<label for="MaHoaTuoi">Loại hoa</label>
+							<select asp-for="flw.MaHoaTuoi" class="form-control">
+								<option value="">Chọn loại hoa</option>
+								@foreach (var type in ViewBag.FlowerType)
+								{
+									<option value="@type.MaHoaTuoi">@type.TenHoaTuoi</option>
+								}
+							</select>
+							@Html.ValidationMessageFor(row => row.flw.MaHoaTuoi)
+						</div>
+						<div class="form-group">
+							<label for="GiaBan">Giá bán</label>
+							<input asp-for="flw.GiaBan" class="form-control" />
+							@Html.ValidationMessageFor(row => row.flw.GiaBan)
+						</div>
+						<div class="form-group">
+							<label for="MoTa">Mô tả</label>
+							<textarea asp-for="flw.MoTa" class="form-control" rows="5"></textarea>
+							@Html.ValidationMessageFor(row => row.flw.MoTa)
+						</div>
+						<div class="form-group">
+							<label for="HinhAnh">Hình ảnh</label>
+							<input asp-for="flw.HinhAnh" class="form-control" />
+							@Html.ValidationMessageFor(row => row.flw.HinhAnh)
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-bs-dismiss="modal">Huỷ</button>
+						<button type="submit" class="btn btn-success">Thêm</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Edit Modal HTML -->
+	<div id="editFlowerModal" class="modal fade">
+		<div class="modal-dialog modal-xl">
+			<div class="modal-content">
+				<form id="editFlowerForm" asp-action="Edit" asp-controller="Flowers" method="post">
+					@Html.AntiForgeryToken()
+					<div class="modal-header">
+						<h4 class="modal-title">Edit Flower</h4>
+						<button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="MaHoa">Mã hoa</label>
+							<input type="text" id="MaHoa" class="form-control" readonly />
+						</div>
+						<div class="form-group">
+							<label for="TenHoa">Tên hoa</label>
+							<input type="text" id="TenHoa" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="MaDanhMuc">Danh mục</label>
+							<select id="MaDanhMuc" class="form-control">
+								<option value="">Chọn danh mục</option>
+								@foreach (var category in ViewBag.FlowerCategory)
+								{
+									<option value="@category.MaDanhMuc">@category.TenDanhMuc</option>
+								}
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="MaHoaTuoi">Loại hoa</label>
+							<select id="MaHoaTuoi" class="form-control">
+								<option value="">Chọn loại hoa</option>
+								@foreach (var type in ViewBag.FlowerType)
+								{
+									<option value="@type.MaHoaTuoi">@type.TenHoaTuoi</option>
+								}
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="GiaBan">Giá bán</label>
+							<input type="text" id="GiaBan" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label for="MoTa">Mô tả</label>
+							<textarea id="MoTa" class="form-control" rows="5"></textarea>
+						</div>
+						<div class="form-group">
+							<label for="HinhAnh">Hình ảnh</label>
+							<input type="text" id="HinhAnh" class="form-control" />
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-bs-dismiss="modal">Huỷ</button>
+						<input type="submit" class="btn btn-info" value="Lưu">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Delete Modal HTML -->
+	<div id="deleteFlowerModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="deleteFlowerForm" asp-action="Delete" asp-controller="Flowers" method="post">
+					@Html.AntiForgeryToken()
+					<div class="modal-header">
+						<h4 class="modal-title">Delete Flower</h4>
+						<button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>Bạn có chắc chắn muốn xóa sản phẩm này không?</p>
+						<p class="text-warning"><small>Hành động này không thể hoàn tác.</small></p>
+						<input type="hidden" id="deleteFlowerId" name="id" value="" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-bs-dismiss="modal">Huỷ</button>
+						<input type="submit" class="btn btn-danger" value="Xoá">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Delete Selected Modal HTML -->
+	<div id="deleteSelectedModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="deleteSelectedForm" asp-action="DeleteSelected" asp-controller="Flowers" method="post">
+					@Html.AntiForgeryToken()
+					<div class="modal-header">
+						<h4 class="modal-title">Delete Selected Flowers</h4>
+						<button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>Bạn có chắc chắn muốn xóa các sản phẩm đã chọn không?</p>
+						<p class="text-warning"><small>Hành động này không thể hoàn tác.</small></p>
+						<input type="hidden" id="deleteSelectedIds" name="selectedIds" value="" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-bs-dismiss="modal">Huỷ</button>
+						<input type="submit" class="btn btn-danger" value="Xoá">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
